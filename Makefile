@@ -1,5 +1,5 @@
 build:
-	valac --pkg gio-2.0 --pkg gee-0.8 src/*.vala -o trace_analyzer
+	valac --pkg gio-2.0 --pkg gee-0.8 src/*.vala -X -O3 -X -s -o trace_analyzer
 
 install: build
 	install -d ${DESTDIR}/usr/local/bin/
@@ -10,7 +10,6 @@ test: build
 
 clean:
 	rm -f ./trace_analyzer
-
 
 
 .PHONY: build test install clean

@@ -99,7 +99,7 @@ Thanks to Derick Rethans, who [posted a simple PHP
 tool](http://derickrethans.nl/xdebug-and-tracing-memory-usage.html) for
 parsing Xdebug trace files.
 
-## Platforms 
+## Platforms
 
 This script was written and originally tested on Mac OS X using the
 [homebrew](https://github.com/mxcl/homebrew) package of Vala and Gee. It
