@@ -1,16 +1,18 @@
+
 # Vala Xdebug Tools
 
-This package has tools that are useful for parsing Xdebug trace data. If
-you are not sure how to collect Xdebug trace data, see the section
-'Collecting Data with Xdebug' below.
+This package has tools that are useful for parsing Xdebug trace file data.
 
-_Note:_ This package works, but isn't actively maintained. If you would
-like to help maintain `trace_analzyer`, please file an issue in the
-issue queue.
+(If you are not sure how to collect Xdebug trace data, see the section 'Collecting Data with Xdebug' below.)
+
 
 ## Installation
 
-Install the Vala environment. (On Mac OS X, `brew install vala libgee`)
+Install the Vala environment.
+
+Mac OS X: `brew install vala libgee`
+
+Linux: use the package manager to search for 'vala'.
 
 Compile:
 
@@ -18,13 +20,18 @@ Compile:
     valac --pkg gio-2.0 --pkg gee-0.8 src/*.vala -o trace_analyzer
 ```
 
-(Or just `make build`)
+or:
+
+```
+    make build
+```
 
 Run:
 
 ```
-    ./trace_analyzer some_trace_file.xt
+    ./trace_analyzer trace_file.xt
 ```
+
 
 ## Usage
 
@@ -32,13 +39,14 @@ The trace analyzer has a number of features. In its basic form, it
 simply prints performance data about time and memory usage in a trace
 file.
 
-To get an idea as to how it works, try this:
+To get an idea as to how it works, try:
 
     trace_analyzer --help
 
-## CSV ouput
 
-By running `trace_analzer -c some_file`, you can generate CSV output.
+## CSV Output
+
+By running `trace_analyzer -c some_file`, you can generate CSV output.
 This explains the columns.
 
 Columns of output:
@@ -63,6 +71,7 @@ Note that memory numbers are somewhat suspect because of PHP's garbage
 collection, which may deallocate memory between function entry and
 function exit, essentially creating a negative memory usage number.
 
+
 ## Collecting Data with Xdebug
 
 Example `php.ini` config for Xdebug:
@@ -75,6 +84,7 @@ xdebug.trace_output_name = php-trace.%t
 
 The second one is the most important: Set the tracing format to 1.
 
+
 ## Developers: Build Your Own Trace Tools
 
 Included in this tool is a straightforward library for building your own
@@ -86,26 +96,26 @@ tracefile analyzers. In a nutshell, here's how you do it:
 `trace_parser.register(my_trace_observer)`)
 4. Parse the file (e.g. `trace_parser.parse()`)
 
+
 ### Why Vala?
 
-Why was this tool written in Vala instead of PHP? There are two reasons:
+Why is this tool written in Vala and not PHP? There are two reasons:
 
-1. Vala is compiled to a native executable, and is thus substantially faster than its PHP equivalent. This is important when trace files start to get huge.
-2. I think Vala is a fantastic language, and thus have used it here.
+1. Vala is compiled to a native executable, and is thus substantially faster than its PHP equivalent. This is important for larger trace files.
+2. The author (technosophos) regards Vala as a fantastic language.
+
 
 ## Acknowledgements
 
-Thanks to Derick Rethans, who [posted a simple PHP
+Thanks to Derick Rethans, who [posted a PHP
 tool](http://derickrethans.nl/xdebug-and-tracing-memory-usage.html) for
 parsing Xdebug trace files.
 
 ## Platforms
 
-This script was written and originally tested on Mac OS X using the
+This program was written and originally tested on Mac OS X using the
 [homebrew](https://github.com/mxcl/homebrew) package of Vala and Gee. It
 was written in TextMate using the [Vala
-bundle](https://github.com/technosophos/Vala-TMBundle). Subsequently,
-this has been tested on Debian GNU/Linux.
+bundle](https://github.com/technosophos/Vala-TMBundle).
 
-There is no reason why this shouldn't compile and execute on any system
-that supports Vala.
+Compiled and tested (Tinram, 2016) on Debian-based Linux, using Vala 0.16.1
